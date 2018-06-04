@@ -12,6 +12,8 @@ The image itself is designed to dynamically configure, so there isn't much to do
 
 The `alpine` image is used by default, change `nginx_version` to `latest` to use a `debian:jesse` based image.
 
+Creates a network called `nginx_proxy_net` which your proxied containers must join.
+
 ### Nginx Proxy Usage
 
 Containers which need proxying need to do two things: Expose the port to be proxied, and a specify a virtual host. 

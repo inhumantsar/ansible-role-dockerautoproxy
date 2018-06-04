@@ -6,7 +6,7 @@ services:
         ports:
             - 80:80
         networks:
-            - nginx_net
+            - proxy_net
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
         deploy:
@@ -15,5 +15,5 @@ services:
                     - node.role == manager
 
 networks:
-    nginx_net:
+    proxy_net:
         driver: overlay
