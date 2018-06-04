@@ -1,0 +1,19 @@
+---
+- name: create config dir
+  file:
+    path: /etc/nginx
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: drop docker-compose.yml file
+  template:
+    dest: /etc/nginx/docker-compose.yml
+    src: templates/docker-compose.yml.j2
+    owner: root
+    group: root
+    mode: 0644
+
+- name: launch docker stack
+  shell: docker stack deploy -c /etc/nginx/docker-compose.yml {{ nginx_stack_name }}

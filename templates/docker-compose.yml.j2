@@ -1,0 +1,19 @@
+version: "3.3"
+
+services:
+    nginx:
+        image: jwilder/nginx-proxy:{{ nginx_version }}
+        ports:
+            - 80:80
+        networks:
+            - nginx_net
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock:ro
+        deploy:
+            placement:
+                constraints:
+                    - node.role == manager
+
+networks:
+    nginx_net:
+        driver: overlay
