@@ -10,4 +10,5 @@ test:
     variables:
         WORKDIR: "$CI_PROJECT_DIR"
     script:
-        - /start.sh -vvv
+        - /start.sh -vvv -c local
+        - /start.sh -vvv -c local -e dockerautoproxy_config_path=/tmp

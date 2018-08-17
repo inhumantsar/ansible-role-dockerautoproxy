@@ -9,6 +9,9 @@ services:
             - proxy_net
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
+{% if dockerautoproxy_config_path %}
+            - "{{ dockerautoproxy_config_path }}:/etc/nginx/conf.d"
+{% endif %}
         deploy:
             placement:
                 constraints:

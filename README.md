@@ -24,5 +24,5 @@ Virtual hosts must be specified in an env var called `VIRTUAL_HOST`.
 
 #### Advanced Usage
 
-* Custom nginx configs can be provided by mounting the config file as a volume at `/etc/nginx/vhost.d/{VIRTUAL_HOST}_location`.
+* Custom nginx configs can be provided by mounting a hostpath using the `dockerautoproxy_config_path` variable.
 * SSL certificates can be provided, or a companion container can be used to [automatically provision certs from LetsEncrypt](https://github.com/jwilder/nginx-proxy#ssl-support-using-letsencrypt).
