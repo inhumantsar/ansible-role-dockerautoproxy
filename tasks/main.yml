@@ -1,11 +1,13 @@
 ---
-- name: create config dir
+- name: create config dirs
   file:
-    path: /etc/nginx
+    path: {{ dockerautoproxy_config_path }}
     state: directory
+    recurse: true
     owner: root
     group: root
     mode: 0755
+  when: dockerautoproxy_config_path
 
 - name: drop docker-compose.yml file
   template:

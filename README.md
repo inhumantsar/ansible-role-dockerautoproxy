@@ -24,5 +24,10 @@ Virtual hosts must be specified in an env var called `VIRTUAL_HOST`.
 
 #### Advanced Usage
 
-* Custom nginx configs can be provided by mounting a hostpath using the `dockerautoproxy_config_path` variable.
-* SSL certificates can be provided, or a companion container can be used to [automatically provision certs from LetsEncrypt](https://github.com/jwilder/nginx-proxy#ssl-support-using-letsencrypt).
+##### Custom nginx configs 
+
+Can be loaded by mounting a host path containing nginx config files using the `dockerautoproxy_config_path` variable. The path will be created if it doesn't already exist on the host. 
+
+##### SSL certificates
+
+Can be provided manually, or a companion container can be used to [automatically provision certs from LetsEncrypt](https://github.com/jwilder/nginx-proxy#ssl-support-using-letsencrypt).
