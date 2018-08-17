@@ -1,4 +1,5 @@
 ---
 nginx_version: alpine
 nginx_stack_name: nginx
+
 dockerautoproxy_config_path: ~
