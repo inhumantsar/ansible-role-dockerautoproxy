@@ -1,7 +1,7 @@
 ---
 - name: create config dirs
   file:
-    path: {{ dockerautoproxy_config_path }}
+    path: "{{ dockerautoproxy_config_path }}"
     state: directory
     recurse: true
     owner: root
