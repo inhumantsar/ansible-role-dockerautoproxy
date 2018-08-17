@@ -33,6 +33,7 @@ install:
 script:
   - ansible-playbook test.yml --syntax-check
   - ansible-playbook test.yml -vvv -c local -b
+  - ansible-playbook test.yml -vvv -c local -b -e dockerautoproxy_config_path=/tmp
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
