@@ -11,4 +11,4 @@ test:
         WORKDIR: "$CI_PROJECT_DIR"
     script:
         - /start.sh -vvv -c local
-        - /start.sh -vvv -c local -e dockerautoproxy_config_path=/tmp
+        - /start.sh -vvv -c local -e dockerautoproxy_config_path=/tmp/dockerautoproxy_configs
