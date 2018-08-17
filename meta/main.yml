@@ -1,6 +1,7 @@
 galaxy_info:
   author: Shaun Martin
   description: Sets up a dynamic Nginx reverse proxy on Docker Swarm
+  role_name: dockerautoproxy
 
   # If the issue tracker for your role is not on github, uncomment the
   # next line and provide a value
