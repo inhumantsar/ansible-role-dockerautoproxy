@@ -5,12 +5,38 @@ services:
         image: jwilder/nginx-proxy:{{ nginx_version }}
         ports:
             - 80:80
+            - 443:443
         networks:
             - proxy_net
+        labels:
+            - com.github.jrcs.letsencrypt_nginx_proxy_companion.nginx_proxy
         volumes:
             - /var/run/docker.sock:/tmp/docker.sock:ro
+            - vhostd:/etc/nginx/vhost.d
+            - html:/usr/share/nginx/html
+{% if dockerautoproxy_certs_path is not none %}
+            - "{{ dockerautoproxy_certs_path }}:/etc/nginx/certs:ro"
+{% else %}
+            - certs:/etc/nginx/certs:ro
+{% endif %}
 {% if dockerautoproxy_config_path is not none %}
             - "{{ dockerautoproxy_config_path }}:/etc/nginx/conf.d"
+{% endif %}
+        deploy:
+            placement:
+                constraints:
+                    - node.role == manager
+
+    proxy-ssl-companion:
+        image: jrcs/letsencrypt-nginx-proxy-companion
+        volumes:
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - vhostd:/etc/nginx/vhost.d
+            - html:/usr/share/nginx/html
+{% if dockerautoproxy_certs_path is not none %}
+            - "{{ dockerautoproxy_certs_path }}:/etc/nginx/certs:rw"
+{% else %}
+            - certs:/etc/nginx/certs:rw
 {% endif %}
         deploy:
             placement:
@@ -20,3 +46,8 @@ services:
 networks:
     proxy_net:
         driver: overlay
+
+volumes:
+    vhostd:
+    html:
+    certs:
