@@ -30,4 +30,15 @@ Can be loaded by mounting a host path containing nginx config files using the `d
 
 ##### SSL certificates
 
-Can be provided manually, or a companion container can be used to [automatically provision certs from LetsEncrypt](https://github.com/jwilder/nginx-proxy#ssl-support-using-letsencrypt).
+SSL certificates are generated automatically. By default, they're stored in a data volume shared between the containers. You can use `dockerautoproxy_certs_path` to mount a path on the host to store them at.
+
+To flag a container for SSL, set env vars `LETSENCRYPT_HOST` and `LETSENCRYPT_EMAIL`. For example:
+
+```
+$ docker run -d \
+    --name example-app \
+    -e "VIRTUAL_HOST=example.com,www.example.com,mail.example.com" \
+    -e "LETSENCRYPT_HOST=example.com,www.example.com,mail.example.com" \
+    -e "LETSENCRYPT_EMAIL=foo@bar.com" \
+    tutum/apache-php
+```

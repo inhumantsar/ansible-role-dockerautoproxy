@@ -14,6 +14,7 @@
     path: "{{ dockerautoproxy_certs_path }}"
     state: directory
     recurse: true
+  when: dockerautoproxy_certs_path is not none
 
 - name: drop docker-compose.yml file
   template:
