@@ -14,7 +14,7 @@ services:
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - vhostd:/etc/nginx/vhost.d
             - html:/usr/share/nginx/html
-{% if dockerautoproxy_config_path is not none %}
+{% if dockerautoproxy_certs_path is not none %}
             - "{{ dockerautoproxy_certs_path }}:/etc/nginx/certs:ro"
 {% else %}
             - certs:/etc/nginx/certs:ro
@@ -33,7 +33,7 @@ services:
             - /var/run/docker.sock:/var/run/docker.sock:ro
             - vhostd:/etc/nginx/vhost.d
             - html:/usr/share/nginx/html
-{% if dockerautoproxy_config_path is not none %}
+{% if dockerautoproxy_certs_path is not none %}
             - "{{ dockerautoproxy_certs_path }}:/etc/nginx/certs:rw"
 {% else %}
             - certs:/etc/nginx/certs:rw
