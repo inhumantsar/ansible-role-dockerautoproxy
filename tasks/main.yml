@@ -1,5 +1,5 @@
 ---
-- name: create config dirs
+- name: create config path
   file:
     path: "{{ dockerautoproxy_config_path }}"
     state: directory
@@ -9,13 +9,19 @@
     mode: 0755
   when: dockerautoproxy_config_path is not none
 
+- name: create certs path
+  file:
+    path: "{{ dockerautoproxy_certs_path }}"
+    state: directory
+    recurse: true
+
 - name: drop docker-compose.yml file
   template:
-    dest: /tmp/docker-compose.yml
+    dest: /tmp/dockerautoproxy-docker-compose.yml
     src: templates/docker-compose.yml.j2
     owner: root
     group: root
     mode: 0644
 
 - name: launch docker stack
-  shell: docker stack deploy -c /tmp/docker-compose.yml {{ nginx_stack_name }}
+  shell: docker stack deploy -c /tmp/dockerautoproxy-docker-compose.yml {{ nginx_stack_name }}
