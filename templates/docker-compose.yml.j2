@@ -14,6 +14,9 @@ services:
             - /var/run/docker.sock:/tmp/docker.sock:ro
             - vhostd:/etc/nginx/vhost.d
             - html:/usr/share/nginx/html
+{% if dockerautoproxy_dhparam_path is not none %}
+            - "{{ dockerautoproxy_dhparam_path }}:/etc/nginx/dhparam"
+{% endif %}
 {% if dockerautoproxy_certs_path is not none %}
             - "{{ dockerautoproxy_certs_path }}:/etc/nginx/certs:ro"
 {% else %}
@@ -55,3 +58,4 @@ volumes:
     vhostd:
     html:
     certs:
+  
