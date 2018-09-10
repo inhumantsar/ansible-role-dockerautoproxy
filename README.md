@@ -30,9 +30,9 @@ Can be loaded by mounting a host path containing nginx config files using the `d
 
 ##### SSL certificates
 
-SSL certificates are generated automatically. By default, they're stored in a data volume shared between the containers. You can use `dockerautoproxy_certs_path` to mount a path on the host to store them at.
+SSL certificates can be generated automatically or specified manually. By default, they're stored in a data volume shared between the containers. You can use `dockerautoproxy_certs_path` to mount a path on the host to store them at.
 
-To flag a container for SSL, set env vars `LETSENCRYPT_HOST` and `LETSENCRYPT_EMAIL`. For example:
+To automatically generate certificates, set the Ansible var to `dockerautoproxy_ssl_companion` to `true`. This will launch a second container which will handle SSL certificate generation with Let's Encrypt. To enable a service for this, set the container's env vars `LETSENCRYPT_HOST` and `LETSENCRYPT_EMAIL`. For example:
 
 ```
 $ docker run -d \

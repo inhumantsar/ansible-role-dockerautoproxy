@@ -27,6 +27,7 @@ services:
                 constraints:
                     - node.role == manager
 
+{% if dockerautoproxy_ssl_companion %}
     proxy-ssl-companion:
         image: jrcs/letsencrypt-nginx-proxy-companion
         networks:
@@ -44,6 +45,7 @@ services:
             placement:
                 constraints:
                     - node.role == manager
+{% endif %}
 
 networks:
     proxy_net:
