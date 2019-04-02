@@ -36,7 +36,7 @@ services:
         networks:
             - proxy_net
         volumes:
-            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - /var/run/docker.sock:/tmp/docker.sock:ro
             - vhostd:/etc/nginx/vhost.d
             - html:/usr/share/nginx/html
 {% if dockerautoproxy_certs_path is not none %}
