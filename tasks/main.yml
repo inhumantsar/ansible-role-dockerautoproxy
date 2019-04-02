@@ -16,6 +16,13 @@
     recurse: true
   when: dockerautoproxy_certs_path is not none
 
+- name: create dhparam path
+  file:
+    path: "{{ dockerautoproxy_dhparam_path }}"
+    state: directory
+    recurse: true
+  when: dockerautoproxy_dhparam_path is not none
+
 - name: drop docker-compose.yml file
   template:
     dest: /tmp/dockerautoproxy-docker-compose.yml
